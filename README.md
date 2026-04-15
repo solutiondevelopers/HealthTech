@@ -1,108 +1,150 @@
 # HealthTech
-# ❤️ PulsePoint - Smart Rural Maternal Healthcare System
+# ❤️ PulsePoint - Dr Drug – AI Powered Healthcare Assistant
 
-> Enhancing Rural Maternal Healthcare through AI-Driven Monitoring & Integrated Support Systems
-
----
-
-## 📌 Overview
-
-PulsePoint is an AI-powered healthcare platform designed to improve **maternal healthcare in rural areas** by connecting patients, ASHA workers, doctors, and government systems into a unified ecosystem.
-
-It solves critical challenges such as:
-- Lack of continuous health monitoring
-- Poor awareness of pregnancy care
-- Limited access to doctors & hospitals
-- Weak emergency support systems
-- Poor data management & communication
+An intelligent healthcare platform designed to improve patient safety and accessibility by combining AI, real-time systems, and smart medical insights.
 
 ---
 
-## 🚀 Key Features
+## 🚀 Overview
 
-### 🩺 AI-Based Health Monitoring
-- Tracks patient health conditions
-- Detects high-risk pregnancies
-- Provides real-time alerts
+Dr Drug is an AI-driven healthcare platform that helps users make safer medical decisions by providing:
 
----
+- Drug interaction analysis  
+- Prescription understanding  
+- AI-powered health assistance  
+- Real-time doctor consultation  
 
-### 🤖 AI Assistant (Local Language)
-- Provides guidance in Hindi/Marathi
-- Suggests precautions & medicines
-- Easy to use for rural users
+The platform connects **patients and doctors in a single ecosystem**.
 
 ---
 
-### 📹 Remote Doctor Access
-- Chat & video consultation
-- Reduces hospital visits
-- Saves time and cost
+## ✨ Key Features
+
+### 💊 Drug Interaction Checker
+- Allopathy + Ayurveda + Food interactions  
+- Modern drug-to-drug interaction analysis  
+- Safety levels (Low / Moderate / High)
 
 ---
 
-### 🚑 Emergency Support System
-- Blood availability detection
-- Emergency alerts
-- Quick response system
+### 📄 AI Prescription Scanner
+- Upload prescription image  
+- Extract medicine data  
+- Structured breakdown:
+  - Medicine name  
+  - Dosage  
+  - Usage  
+  - Important instructions  
 
 ---
 
-### 🏥 Health Monitoring Dashboard
-- Patient records
-- Risk alerts
-- Health analytics
+### 🤖 AI Health Assistant
+- Multilingual support (English, Hindi, Marathi)  
+- Safe medical guidance  
+- Symptom-based assistance  
 
 ---
 
-### 🏛️ Government Scheme Integration
-- Check eligibility
-- Apply for schemes
-- Track benefits
+### 💊 Generic Medicine & Price Comparison
+- Suggests affordable alternatives  
+- Displays price comparison  
+- Helps users save cost  
 
 ---
 
-### 👩‍⚕️ ASHA Worker Support System
-- Add & manage village members
-- Register pregnant women
-- Visit planner
-- High-risk alerts
+### 🏥 Nearby Medical Store Locator
+- Find nearby pharmacies  
+- Location-based search  
+- Map integration  
 
 ---
 
-## 🧠 Innovation
-
-- AI-based risk detection system
-- Integrated healthcare ecosystem
-- Offline support for rural areas
-- Multi-language accessibility
-- Centralized health data system
+### 👨‍⚕️ Doctor Consultation
+- Chat with doctors  
+- Call functionality  
+- Appointment booking  
 
 ---
 
-## ⚙️ System Architecture
-
-### 🔹 Frontend
-- React / React Native
-- HTML, CSS, JavaScript
-
-### 🔹 Backend
-- Node.js / Python / Flask
-- Express.js / Firebase
-
-### 🔹 Database
-- MySQL / MongoDB / Firebase Firestore
-- PostgreSQL
-
-### 🔹 AI & Chatbot
-- NLP (Natural Language Processing)
-- Dialogflow
-- Healthcare chatbot system
-
-### 🔹 APIs
-- Healthcare APIs
-- External medical services
+### 🧠 Doctor Dashboard
+- Manage patients  
+- Real-time consultation system  
+- AI-generated summaries  
+- Prescription creation  
+- Follow-up scheduling  
 
 ---
 
-## 🏗️ Architecture Flow
+### 🌿 Home Remedies
+- Symptom-based remedies  
+- Traditional + natural solutions  
+
+---
+
+## ⚙️ Tech Stack
+
+### Frontend
+- React / Vite  
+- Tailwind CSS  
+- Glassmorphism UI  
+
+### Backend
+- Node.js  
+- Express  
+
+### Database
+- Firebase Firestore (Real-time)
+
+### AI Integration
+- Google Gemini API  
+- AI-based text processing  
+
+---
+
+## 🔥 Real-Time Features
+
+- Live chat between doctor and patient  
+- Instant appointment updates  
+- Real-time dashboard sync  
+
+---
+
+## 📸 Screenshots
+
+<img width="1918" height="763" alt="image" src="https://github.com/user-attachments/assets/2613c969-8966-43dd-8a8e-ee5c79db980b" />
+
+
+---
+
+## 🏆 Achievements
+
+🏆 **Special Award Winner – TECHATHON 24hr Hackathon (TechnoVision 2K26)**
+
+---
+
+## 👥 Team PulsePoint
+
+- Riddhi Chaudhari (Team Lead)  
+- Parth Chaudhari  
+- Omkar Bhagepalle  
+- Prem Gosavi  
+- Sammed Chougule  
+
+---
+
+## 🚀 Future Improvements
+
+- Video consultation integration  
+- AI-based disease prediction  
+- Medicine delivery system  
+- Advanced analytics  
+
+---
+
+## 📌 Installation
+
+```bash
+git clone https://github.com/your-repo-name
+cd project
+npm install
+npm run dev
