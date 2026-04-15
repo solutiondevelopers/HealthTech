@@ -1,0 +1,144 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper Functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    function isValidUser(data) {
+      return data.keys().hasAll(['uid', 'name', 'email', 'role']) &&
+             data.uid == request.auth.uid &&
+             data.email is string &&
+             data.role in ['user', 'doctor'];
+    }
+
+    function isValidDoctor(data) {
+      return data.keys().hasAll(['uid', 'name', 'email', 'registrationNumber', 'status', 'clinicName', 'phone', 'address', 'location', 'isAvailable']) &&
+             data.uid == request.auth.uid &&
+             data.status == 'pending';
+    }
+
+    function isValidAppointment(data) {
+      return data.keys().hasAll(['patientName', 'problem', 'time', 'status', 'doctorId']) &&
+             data.doctorId == request.auth.uid &&
+             data.status in ['pending', 'confirmed', 'completed', 'cancelled'];
+    }
+
+    function isValidConsultation(data) {
+      return data.keys().hasAll(['doctorId', 'patientId', 'createdAt']) &&
+             (data.doctorId == request.auth.uid || data.patientId == request.auth.uid);
+    }
+
+    function isValidMessage(data) {
+      return data.keys().hasAll(['senderId', 'senderRole', 'text', 'timestamp']) &&
+             data.senderId == request.auth.uid &&
+             data.senderRole in ['doctor', 'patient'];
+    }
+
+    function isValidPatient(data) {
+      return data.keys().hasAll(['name', 'doctorId']) &&
+             data.doctorId == request.auth.uid;
+    }
+
+    function isValidPrescription(data) {
+      return data.keys().hasAll(['doctorId', 'patientId', 'medicines', 'createdAt']) &&
+             data.doctorId == request.auth.uid &&
+             data.medicines is list;
+    }
+
+    function isValidFollowup(data) {
+      return data.keys().hasAll(['patientId', 'doctorId', 'date']) &&
+             data.doctorId == request.auth.uid;
+    }
+
+    function isValidChatSession(data) {
+      return data.keys().hasAll(['userId', 'messages', 'createdAt']) &&
+             data.userId == request.auth.uid &&
+             data.messages is list &&
+             data.messages.size() <= 1000;
+    }
+
+    function isValidInteractionReport(data) {
+      return data.keys().hasAll(['userId', 'category', 'med1', 'med2', 'result', 'createdAt']) &&
+             data.userId == request.auth.uid &&
+             data.category is string &&
+             data.med1 is string &&
+             data.med2 is string &&
+             data.result is map;
+    }
+
+    // Users Collection
+    match /users/{userId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated() && isValidUser(request.resource.data);
+      allow update: if isOwner(userId) && isValidUser(request.resource.data) && 
+                    request.resource.data.role == resource.data.role;
+    }
+
+    // Doctors Collection
+    match /doctors/{doctorId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated() && isValidDoctor(request.resource.data);
+      allow update: if isOwner(doctorId);
+    }
+
+    // Appointments Collection
+    match /appointments/{appointmentId} {
+      allow read: if isAuthenticated() && (resource.data.doctorId == request.auth.uid || resource.data.patientId == request.auth.uid);
+      allow create: if isAuthenticated() && isValidAppointment(request.resource.data);
+      allow update: if isAuthenticated() && (resource.data.doctorId == request.auth.uid || resource.data.patientId == request.auth.uid);
+    }
+
+    // Consultations Collection
+    match /consultations/{consultationId} {
+      allow read: if isAuthenticated() && (resource.data.doctorId == request.auth.uid || resource.data.patientId == request.auth.uid);
+      allow create: if isAuthenticated() && isValidConsultation(request.resource.data);
+      allow update: if isAuthenticated() && (resource.data.doctorId == request.auth.uid || resource.data.patientId == request.auth.uid);
+
+      match /messages/{messageId} {
+        allow read: if isAuthenticated() && (get(/databases/$(database)/documents/consultations/$(consultationId)).data.doctorId == request.auth.uid || get(/databases/$(database)/documents/consultations/$(consultationId)).data.patientId == request.auth.uid);
+        allow create: if isAuthenticated() && isValidMessage(request.resource.data);
+      }
+    }
+
+    // Patients Collection
+    match /patients/{patientId} {
+      allow read: if isAuthenticated() && resource.data.doctorId == request.auth.uid;
+      allow create: if isAuthenticated() && isValidPatient(request.resource.data);
+      allow update: if isAuthenticated() && resource.data.doctorId == request.auth.uid;
+    }
+
+    // Prescriptions Collection
+    match /prescriptions/{prescriptionId} {
+      allow read: if isAuthenticated() && (resource.data.doctorId == request.auth.uid || resource.data.patientId == request.auth.uid);
+      allow create: if isAuthenticated() && isValidPrescription(request.resource.data);
+    }
+
+    // Followups Collection
+    match /followups/{followupId} {
+      allow read: if isAuthenticated() && (resource.data.doctorId == request.auth.uid || resource.data.patientId == request.auth.uid);
+      allow create: if isAuthenticated() && isValidFollowup(request.resource.data);
+    }
+
+    // Chat Sessions Collection
+    match /chatSessions/{chatId} {
+      allow read: if isAuthenticated() && resource.data.userId == request.auth.uid;
+      allow create: if isAuthenticated() && isValidChatSession(request.resource.data);
+      allow update: if isAuthenticated() && resource.data.userId == request.auth.uid && isValidChatSession(request.resource.data);
+      allow delete: if isAuthenticated() && resource.data.userId == request.auth.uid;
+    }
+
+    // Interaction Reports Collection
+    match /interactionReports/{reportId} {
+      allow read: if isAuthenticated() && resource.data.userId == request.auth.uid;
+      allow create: if isAuthenticated() && isValidInteractionReport(request.resource.data);
+      allow delete: if isAuthenticated() && resource.data.userId == request.auth.uid;
+    }
+  }
+}

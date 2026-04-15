@@ -1,0 +1,8 @@
+{
+  "name": "Remix: Dr Drug",
+  "description": "AI-powered medication safety platform for identifying drug interactions, scanning prescriptions, and accessing real-time health insights.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}

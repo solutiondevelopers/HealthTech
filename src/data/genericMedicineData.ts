@@ -1,0 +1,122 @@
+export const medicineData = [
+  {
+    brand: "Lipitor / Atorva",
+    generic: "Atorvastatin IP",
+    price: "₹200 for 10 tabs",
+    genericPrice: "₹50 - ₹70",
+    use: "Lowering 'bad' cholesterol (LDL) and preventing heart attacks.",
+    sideEffects: "Muscle pain, joint stiffness, and mild diarrhea.",
+    whenToTake: "Once daily, preferably in the evening.",
+    foodWarning: "Avoid Grapefruit. It blocks the enzyme that breaks down this drug, leading to toxic levels in the blood.",
+    interactionWarning: "High risk when mixed with certain antifungals (Ketoconazole) or other cholesterol meds (Gemfibrozil).",
+    priceLogic: "Switching to the generic saves about 70%; chemically identical in stabilizing heart plaque."
+  },
+  {
+    brand: "Zebeta / Concor",
+    generic: "Bisoprolol Fumarate",
+    price: "₹120 for 10 tabs",
+    genericPrice: "₹30 - ₹45",
+    use: "Managing high blood pressure and heart failure.",
+    sideEffects: "Fatigue, cold hands/feet, and a slower heart rate.",
+    whenToTake: "Once daily in the morning.",
+    foodWarning: "No specific food restrictions, but maintain a consistent diet.",
+    interactionWarning: "Use caution with other blood pressure meds or heart rhythm drugs (Digoxin).",
+    priceLogic: "The generic version provides the same 'Beta-blocking' effect at roughly 1/4th the cost."
+  },
+  {
+    brand: "Cipro / Ciplox",
+    generic: "Ciprofloxacin Hydrochloride",
+    price: "₹80 for 10 tabs",
+    genericPrice: "₹20 - ₹30",
+    use: "Treating serious bacterial infections (UTIs, pneumonia, skin).",
+    sideEffects: "Nausea and potential tendon inflammation.",
+    whenToTake: "Every 12 hours.",
+    foodWarning: "Avoid Dairy/Calcium. Milk, yogurt, or calcium supplements bind to the drug and stop absorption.",
+    interactionWarning: "Do not take with antacids or iron supplements within 2 hours.",
+    priceLogic: "Since this is usually a short-term course, the generic saves you money without compromising the 'kill rate' of the bacteria."
+  },
+  {
+    brand: "Volini / Moov / Voveran",
+    generic: "Diclofenac Diethylamine Gel",
+    price: "₹150 for 30g tube",
+    genericPrice: "₹25 - ₹35",
+    use: "Relieving inflammation, arthritis, and muscle pain.",
+    sideEffects: "Stomach upset or skin irritation (if using gel).",
+    whenToTake: "2-3 times a day as needed.",
+    foodWarning: "Always take tablets with food to protect your stomach lining.",
+    interactionWarning: "Do not mix with blood thinners like Warfarin (extreme bleeding risk).",
+    priceLogic: "You save nearly 80% by opting for the generic; brands charge heavily for advertising and fragrance."
+  },
+  {
+    brand: "Prinivil / Zestril / Lipril",
+    generic: "Lisinopril IP",
+    price: "₹90 for 10 tabs",
+    genericPrice: "₹20 - ₹30",
+    use: "Treating high blood pressure and protecting the heart after an attack.",
+    sideEffects: "A persistent dry cough and dizziness.",
+    whenToTake: "Once daily at the same time.",
+    foodWarning: "Avoid Salt Substitutes. Most salt subs use potassium, which can rise to dangerous levels with this drug.",
+    interactionWarning: "Interacts poorly with NSAIDs (Ibuprofen), which can damage the kidneys.",
+    priceLogic: "For a lifelong condition, the generic version maintains blood vessel relaxation at a 70% discount."
+  },
+  {
+    brand: "Glucophage / Glycomet",
+    generic: "Metformin Hydrochloride",
+    price: "₹60 for 15 tabs",
+    genericPrice: "₹15 - ₹20",
+    use: "Controlling blood sugar in Type 2 Diabetes.",
+    sideEffects: "Diarrhea, gas, and stomach cramps (usually temporary).",
+    whenToTake: "With meals to reduce stomach issues.",
+    foodWarning: "Limit alcohol to avoid 'Lactic Acidosis.'",
+    interactionWarning: "Contrast dyes used in X-rays/CT scans (inform your doctor before scans).",
+    priceLogic: "The 'True Generic' from Jan Aushadhi stores is nearly 4-5 times cheaper than the branded version."
+  },
+  {
+    brand: "Prilosec / Omez",
+    generic: "Omeprazole IP",
+    price: "₹90 for 10 caps",
+    genericPrice: "₹25 - ₹40",
+    use: "Acid reflux (GERD), heartburn, and stomach ulcers.",
+    sideEffects: "Headache, gas, and diarrhea.",
+    whenToTake: "30–60 minutes before your first meal.",
+    foodWarning: "Best taken on an empty stomach.",
+    interactionWarning: "Can reduce the absorption of Vitamin B12 and certain antifungals.",
+    priceLogic: "Switching to the generic for a 14-day acid-reflux course saves significant money with the exact same acid-pump inhibition."
+  },
+  {
+    brand: "Pan-40 / Pantocid",
+    generic: "Pantoprazole Sodium",
+    price: "₹150 for 10 tabs",
+    genericPrice: "₹20 - ₹30",
+    use: "Severe acidity and stomach lining protection.",
+    sideEffects: "Joint pain (rare) or stomach pain.",
+    whenToTake: "First thing in the morning on an empty stomach.",
+    foodWarning: "Avoid acidic/spicy foods to help the medicine work better.",
+    interactionWarning: "May interfere with the blood thinner Clopidogrel.",
+    priceLogic: "One of the most common switches; the generic molecule is 85% cheaper than the leading brands."
+  },
+  {
+    brand: "Januvia",
+    generic: "Sitagliptin Phosphate",
+    price: "₹400 for 10 tabs",
+    genericPrice: "₹150 - ₹180",
+    use: "A newer Type 2 Diabetes medication (DPP-4 inhibitor).",
+    sideEffects: "Upper respiratory infection, headache.",
+    whenToTake: "Once daily with or without food.",
+    foodWarning: "None.",
+    interactionWarning: "Can increase the effect of Digoxin (heart med).",
+    priceLogic: "Since the patent expired, the generic has made this expensive therapy accessible to 50% more patients."
+  },
+  {
+    brand: "Telma / Telvas",
+    generic: "Telmisartan IP",
+    price: "₹180 for 15 tabs",
+    genericPrice: "₹35 - ₹50",
+    use: "High blood pressure and preventing kidney damage in diabetics.",
+    sideEffects: "Dizziness and back pain.",
+    whenToTake: "Once daily.",
+    foodWarning: "Avoid Bananas/Potassium. Similar to Lisinopril, it keeps potassium in the body.",
+    interactionWarning: "Do not mix with Lithium or other BP drugs without supervision.",
+    priceLogic: "The generic delivers the same 24-hour protection while saving you nearly ₹1,500 per year."
+  }
+];

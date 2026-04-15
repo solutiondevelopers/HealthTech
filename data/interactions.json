@@ -1,0 +1,5 @@
+[
+  { "drug1": "aspirin", "drug2": "warfarin", "severity": "High", "description": "Increased risk of bleeding." },
+  { "drug1": "ibuprofen", "drug2": "lisinopril", "severity": "Moderate", "description": "May reduce the blood pressure-lowering effect of lisinopril and increase risk of kidney damage." },
+  { "drug1": "metformin", "drug2": "glipizide", "severity": "Low", "description": "Possible increased risk of hypoglycemia." }
+]

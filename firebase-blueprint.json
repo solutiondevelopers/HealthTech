@@ -1,0 +1,202 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "A user of the platform (Patient or Doctor)",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "Firebase Auth UID" },
+        "name": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "phone": { "type": "string" },
+        "role": { "type": "string", "enum": ["user", "doctor"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "name", "email", "role"]
+    },
+    "Doctor": {
+      "title": "Doctor",
+      "description": "Doctor verification details",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "registrationNumber": { "type": "string" },
+        "systemOfMedicine": { "type": "string" },
+        "specialization": { "type": "string" },
+        "experience": { "type": "number" },
+        "clinicName": { "type": "string" },
+        "phone": { "type": "string" },
+        "address": { "type": "string" },
+        "location": {
+          "type": "object",
+          "properties": {
+            "latitude": { "type": "number" },
+            "longitude": { "type": "number" }
+          }
+        },
+        "isAvailable": { "type": "boolean" },
+        "status": { "type": "string", "enum": ["pending", "approved", "rejected"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "name", "registrationNumber", "status"]
+    },
+    "Appointment": {
+      "title": "Appointment",
+      "description": "Patient appointment with a doctor",
+      "type": "object",
+      "properties": {
+        "patientName": { "type": "string" },
+        "problem": { "type": "string" },
+        "time": { "type": "string" },
+        "status": { "type": "string", "enum": ["pending", "confirmed", "completed", "cancelled"] },
+        "doctorId": { "type": "string" },
+        "patientId": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["patientName", "problem", "time", "status", "doctorId"]
+    },
+    "Consultation": {
+      "title": "Consultation",
+      "description": "Real-time chat consultation between doctor and patient",
+      "type": "object",
+      "properties": {
+        "doctorId": { "type": "string" },
+        "patientId": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["doctorId", "patientId", "createdAt"]
+    },
+    "Message": {
+      "title": "Message",
+      "description": "A message in a consultation",
+      "type": "object",
+      "properties": {
+        "senderId": { "type": "string" },
+        "senderRole": { "type": "string", "enum": ["doctor", "patient"] },
+        "text": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "required": ["senderId", "senderRole", "text", "timestamp"]
+    },
+    "Patient": {
+      "title": "Patient",
+      "description": "Patient medical records",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "history": { "type": "array", "items": { "type": "string" } },
+        "prescriptions": { "type": "array", "items": { "type": "string" } },
+        "reports": { "type": "array", "items": { "type": "string" } },
+        "doctorId": { "type": "string" }
+      },
+      "required": ["name", "doctorId"]
+    },
+    "Prescription": {
+      "title": "Prescription",
+      "description": "Digital prescription issued by a doctor",
+      "type": "object",
+      "properties": {
+        "doctorId": { "type": "string" },
+        "patientId": { "type": "string" },
+        "medicines": { "type": "array", "items": { "type": "object" } },
+        "notes": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["doctorId", "patientId", "medicines", "createdAt"]
+    },
+    "Followup": {
+      "title": "Followup",
+      "description": "Scheduled follow-up for a patient",
+      "type": "object",
+      "properties": {
+        "patientId": { "type": "string" },
+        "doctorId": { "type": "string" },
+        "date": { "type": "string" },
+        "notes": { "type": "string" }
+      },
+      "required": ["patientId", "doctorId", "date"]
+    },
+    "ChatSession": {
+      "title": "ChatSession",
+      "description": "A chat session between a user and the AI",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "chatId": { "type": "string" },
+        "title": { "type": "string" },
+        "messages": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "text": { "type": "string" },
+              "sender": { "type": "string", "enum": ["user", "bot"] },
+              "timestamp": { "type": "string", "format": "date-time" }
+            }
+          }
+        },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "chatId", "messages", "createdAt"]
+    },
+    "InteractionReport": {
+      "title": "InteractionReport",
+      "description": "A report generated by the Drug Interaction Checker",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "category": { "type": "string" },
+        "med1": { "type": "string" },
+        "med2": { "type": "string" },
+        "optional": { "type": "string" },
+        "result": { "type": "object" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "category", "med1", "med2", "result", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profile data"
+    },
+    "/doctors/{doctorId}": {
+      "schema": "Doctor",
+      "description": "Doctor verification data"
+    },
+    "/chatSessions/{chatId}": {
+      "schema": "ChatSession",
+      "description": "Chat session data"
+    },
+    "/interactionReports/{reportId}": {
+      "schema": "InteractionReport",
+      "description": "Drug interaction check reports"
+    },
+    "/appointments/{appointmentId}": {
+      "schema": "Appointment",
+      "description": "Patient appointments"
+    },
+    "/consultations/{consultationId}": {
+      "schema": "Consultation",
+      "description": "Live chat consultations"
+    },
+    "/consultations/{consultationId}/messages/{messageId}": {
+      "schema": "Message",
+      "description": "Messages in a consultation"
+    },
+    "/patients/{patientId}": {
+      "schema": "Patient",
+      "description": "Patient medical records"
+    },
+    "/prescriptions/{prescriptionId}": {
+      "schema": "Prescription",
+      "description": "Digital prescriptions"
+    },
+    "/followups/{followupId}": {
+      "schema": "Followup",
+      "description": "Scheduled follow-ups"
+    }
+  }
+}
